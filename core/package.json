@@ -1,0 +1,16 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/xml2js": "^0.4.5",
+    "dotenv": "^8.2.0",
+    "mysql2": "^2.1.0",
+    "typeorm": "^0.2.25",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "typescript": "^3.9.7"
+  }
+}
