@@ -16,6 +16,7 @@ import { RecordEntity } from "./entities/RecordEntity";
     record.sourceVersion = item.Root.sourceVersion;
     record.device = item.Root.device;
     record.unit = item.Root.unit;
+    record.value = item.Root.value;
     record.creationDate = item.Root.creationDate;
     record.startDate = item.Root.startDate;
     record.endDate = item.Root.endDate;

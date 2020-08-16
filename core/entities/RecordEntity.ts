@@ -17,6 +17,8 @@ export class RecordEntity {
   @Column()
   unit: string;
   @Column()
+  value: string;
+  @Column()
   creationDate: Date;
   @Column()
   startDate: Date;

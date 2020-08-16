@@ -4,6 +4,7 @@ export interface RecordItem {
   sourceVersion: string;
   device: string;
   unit: string;
+  value: string;
   creationDate: Date;
   startDate: Date;
   endDate: Date;
