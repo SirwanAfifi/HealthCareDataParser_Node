@@ -7,6 +7,9 @@ import {
   Patch,
   Delete,
   Query,
+  HttpException,
+  HttpStatus,
+  NotFoundException,
 } from '@nestjs/common';
 import { HealthService } from './health.service';
 
@@ -21,7 +24,13 @@ export class HealthController {
 
   @Get(':id')
   findOne(@Param('id') id: number) {
-    return this.healthService.findOne(id);
+    throw `A random error`;
+    const item = this.healthService.findOne(id);
+    if (!item) {
+      // throw new HttpException(`Item #${id} not found`, HttpStatus.NOT_FOUND);
+      throw new NotFoundException(`Item #${id} not found`);
+    }
+    return item;
   }
 
   @Post()
