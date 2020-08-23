@@ -12,6 +12,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { HealthService } from './health.service';
+import { CreateHealthDto } from './dto/create-health.dto';
 
 @Controller('health')
 export class HealthController {
@@ -34,8 +35,8 @@ export class HealthController {
   }
 
   @Post()
-  create(@Body() body) {
-    return this.healthService.create(body);
+  create(@Body() createHealthDto: CreateHealthDto) {
+    return this.healthService.create(createHealthDto);
   }
 
   @Patch(':id')
