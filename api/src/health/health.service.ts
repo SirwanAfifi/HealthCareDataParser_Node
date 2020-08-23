@@ -28,6 +28,7 @@ export class HealthService {
 
   create(createRecordDto: any) {
     this.records.push(createRecordDto);
+    return createRecordDto;
   }
 
   update(id: number, updateRecordDto: any) {
