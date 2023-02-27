@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<title>Step Count Chart</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    clifford: '#da373d',
+                }
+            }
+        }
+    }
+</script>
+</head>
+
+<body class="bg-gray-200">
+    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white p-4 rounded-lg shadow-lg">
+                <h1 class="text-2xl font-bold mb-4">Step Count Chart</h1>
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Define the data
+        var data = {
+            labels: [],
+            datasets: [{
+                label: 'Total Steps',
+                data: [],
+                borderColor: 'blue',
+                fill: false
+            }]
+        };
+
+        // Get the data from the server
+        fetch('./data/steps.json')
+            .then(response => response.json())
+            .then(jsonData => {
+                // Update the data with the fetched data
+                jsonData.forEach(record => {
+                    data.labels.push(record.record_date);
+                    data.datasets[0].data.push(record.total_steps);
+                });
+
+                // Create the chart
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                type: 'time',
+                                time: {
+                                    unit: 'day',
+                                    displayFormats: {
+                                        day: 'MMM D'
+                                    }
+                                },
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Date'
+                                }
+                            }],
+                            yAxes: [{
+                                scaleLabel: {
+                                    display: true,
+                                    labelString: 'Total Steps'
+                                }
+                            }]
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+
+</html>
